@@ -1,7 +1,14 @@
 ---
-theme :
-  name : twitter-2.0
 layout: default
 ---
-{% include JB/setup %}
-{% include themes/twitter-2.0/page.html %}
+
+<article class="page">
+
+  <h2>{{ page.title }}</h2>
+
+  <div class="entry">
+    <span style="font-family:$helveticaNeue; font-size:12pt;"> 
+      {{ content }}
+    </span>
+  </div>
+</article>
