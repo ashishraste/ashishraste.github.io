@@ -1,0 +1,6 @@
+Adding a new page on the blog
+---
+1. Create "/new_page.md" file specifying the path where its content will be added.
+2. Add "new_page" href in _layouts/default.html as that is acting the default 
+index page, as per the /index.html settings, being served in the site.
+3. Write content in "/new_page.md" file that will be populated in html in the content directory by jekyll.
