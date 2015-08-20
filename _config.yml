@@ -31,6 +31,19 @@ footer-links:
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
 
+image:
+  source: assets/images/
+  output: generated
+  presets:
+    users:
+      attr:
+        class: user-portrait
+        itemprop: image
+      width: 350
+    half:
+      width: 400
+      height: 400
+
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
