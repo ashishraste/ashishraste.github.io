@@ -12,7 +12,7 @@ team provides both temporal and spatial water sampling capability. This helps us
 track of water quality parameters such as harmful algal blooms (HABs) that affects
 the health of a water body's fauna.
 
-<img src="/assets/images/swan1.jpg" alt="swan picture" style="width: 560px; height: 315px"/>
+{% image 560x315 swan1.jpg %}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gGRs0V215YI" frameborder="0"></iframe>
 
 ------
