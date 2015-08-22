@@ -11,7 +11,9 @@ of water to a central cloud storage in real-time. Thus a cooperative
 team provides both temporal and spatial water sampling capability. This helps the
 environmental monitoring organizations to keep track of water quality parameters 
 such as harmful algal blooms (HABs) that affects the health of a water body's fauna.
+
 {% image 560x315 swan1.jpg %}
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gGRs0V215YI" frameborder="0"></iframe>
 
 ------
