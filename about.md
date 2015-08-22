@@ -13,6 +13,6 @@ I enjoy playing badminton and cricket. I also like spending time on practicing t
 and reading books where I have a strong bias towards science fiction and astronomy.
 
 In this blog space, I look forward to write about my experiments in the field of robotics. Occasionally they might 
-get mingled with my random thoughts.
+get mingled with my random thought experiments.
 
 ---
