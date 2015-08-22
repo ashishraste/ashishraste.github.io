@@ -10,7 +10,7 @@ various physical and biological parameters of water to a cloud storage in real-t
 water quality parameters such as harmful algal blooms (HABs) that affects the health of a water body's fauna.
 
 {% image 560x315 swan1.jpg %}
-{% oembed https://www.youtube.com/watch?v=gGRs0V215YI %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gGRs0V215YI" frameborder="0"></iframe>
 
 ------
 
