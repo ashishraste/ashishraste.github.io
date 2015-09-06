@@ -30,7 +30,7 @@ module Jekyll
         # Thanks to Andrew Clark for the inline CSS calculation idea <http://contentioninvain.com/2013/02/13/video-embeds-for-responsive-designs/>
         intrinsic = ((@height.to_f / @width.to_f) * 100)
         padding_bottom = ("%.2f" % intrinsic).to_s  + "%"
-        video = %Q{<a class="youtube" href="https://www.youtube.com/watch?v=#{@videoid}" data-videoid="#{@videoid}" data-width="#{@width}" data-height="#{@height}"></a>}
+        video = %Q{<a class="youtube" href="https://www.youtube.com/watch?v=#{@videoid}" data-videoid="#{@videoid}" data-width="#{@width}" data-height="#{@height}">YouTube Video</a>}
         %Q{<figure class="bt-video-container" style="padding-bottom:#{padding_bottom}">#{video}#{@caption}</figure>}
       else
         "Error processing input, expected syntax: {% youtube video_id [width height] %}"
