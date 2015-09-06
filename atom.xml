@@ -4,7 +4,7 @@
  <title></title>
  <link href="/" rel="self"/>
  <link href=""/>
- <updated>2015-09-06T15:17:51+08:00</updated>
+ <updated>2015-09-06T19:02:06+08:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -18,25 +18,37 @@
    <updated>2015-09-06T00:00:00+08:00</updated>
    <id>/posts/robust-range-only-beacon-localization-talk</id>
    <content type="html">&lt;p&gt;At the &lt;a href=&quot;http://paperswelove.org/chapter/singapore/&quot; target=&quot;_blank&quot;&gt;Papers We Love SG Chapter&lt;/a&gt;
-meetup that is held monthly in Singapore, we discussed about the robot localization technique for 
-underwater vehicles as worked out by the authors of &lt;a href=&quot;https://people.csail.mit.edu/teller/pubs/robl.pdf&quot; target=&quot;_blank&quot;&gt;
+meetup, which is held monthly in Singapore, we discussed about robot localization techniques for 
+underwater vehicles as written by the authors of &lt;a href=&quot;https://people.csail.mit.edu/teller/pubs/robl.pdf&quot; target=&quot;_blank&quot;&gt;
 this paper&lt;/a&gt;.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;p&gt;Firstly I will log some important feedback that I gathered from my friends and myself after presenting the paper:&lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dXjBX75JQg8&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Firstly I will jot down the feedback that I gathered from my friends and myself after presenting the paper.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;I need at least two to three days for preparing the slides where I should make sure to 
-rehearse at least two or three times.&lt;/li&gt;
-&lt;li&gt;For any talk involving robots I should take care, wherever possible, to explain the concepts
-and implementations through simulated videos or real-robot demos.&lt;/li&gt;
-&lt;li&gt;When we are foreseeing few technical jargons that are soon to be talked about, it&amp;#39;s better 
+&lt;li&gt;At least three days must be kept aside for preparing the slides after and they must be 
+rehearsed at least three times.&lt;/li&gt;
+&lt;li&gt;For any talk involving robots it shall be taken care, wherever possible, to explain the concepts
+and implementations through appropriate simulations and/or real-robot demos.&lt;/li&gt;
+&lt;li&gt;On foreseeing few technical jargons that are going to be introduced in the presentation, it is better 
 to add some relevant humor before or after discussing them which usually helps the audience to grasp them quickly. &lt;/li&gt;
-&lt;li&gt;Finally, I shall never present anything with an empty stomach.&lt;/li&gt;
+&lt;li&gt;Finally, one shall never present anything with an empty stomach.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dXjBX75JQg8&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;Things that I liked about this paper are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The approach taken by the authors to eliminate noisy range measurements and how they reduced it to 
+an eigenvector problem.&lt;/li&gt;
+&lt;li&gt;A nice linear flow in explaining how the beacons are localized, and how their range measurements
+are later used to navigate around the beacon-field taking a simple EKF SLAM approach.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The work discussed in this paper will be great to experiment upon to see how well it performs
+in presence of noise and other uncertainties.&lt;/p&gt;
 
 &lt;hr&gt;
 </content>
