@@ -1,28 +1,45 @@
----
-layout: null
-title : RSS Feed
----
-
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
-        <title>{{ site.title | xml_escape }}</title>
-        <description>{{ site.title | xml_escape }} - {{ site.author.name | xml_escape }}</description>
-        <link>{{ site.production_url }}{{ site.rss_path }}</link>
-        <link>{{ site.production_url }}</link>
-        <lastBuildDate>{{ site.time | date_to_xmlschema }}</lastBuildDate>
-        <pubDate>{{ site.time | date_to_xmlschema }}</pubDate>
+        <title></title>
+        <description> - </description>
+        <link></link>
+        <link></link>
+        <lastBuildDate>2015-09-06T15:03:48+08:00</lastBuildDate>
+        <pubDate>2015-09-06T15:03:48+08:00</pubDate>
         <ttl>1800</ttl>
 
-{% for post in site.posts %}
+
         <item>
-                <title>{{ post.title | xml_escape }}</title>
-                <description>{{ post.content | xml_escape }}</description>
-                <link>{{ site.production_url }}{{ post.url }}</link>
-                <guid>{{ site.production_url }}{{ post.id }}</guid>
-                <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
+                <title>Robust Range Only Beacon Localization Talk</title>
+                <description>&lt;p&gt;At the &lt;a href=&quot;http://paperswelove.org/chapter/singapore/&quot; target=&quot;_blank&quot;&gt;Papers We Love SG Chapter&lt;/a&gt;
+meetup that is held monthly in Singapore, we discussed about the robot localization technique for 
+underwater vehicles as worked out by the authors of &lt;a href=&quot;https://people.csail.mit.edu/teller/pubs/robl.pdf&quot; target=&quot;_blank&quot;&gt;
+this paper&lt;/a&gt;.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;Firstly I will log some important feedback that I gathered from my friends and myself after presenting the paper:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I need at least two to three days for preparing the slides where I should make sure to 
+rehearse at least two or three times.&lt;/li&gt;
+&lt;li&gt;For any talk involving robots I should take care, wherever possible, to explain the concepts
+and implementations through simulated videos or real-robot demos.&lt;/li&gt;
+&lt;li&gt;When we are foreseeing few technical jargons that are soon to be talked about, it&amp;#39;s better 
+to add some relevant humor before or after discussing them which usually helps the audience to grasp them quickly. &lt;/li&gt;
+&lt;li&gt;Finally, I shall never present anything with an empty stomach.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/dXjBX75JQg8&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;hr&gt;
+</description>
+                <link>/posts/robl-talk</link>
+                <guid>/posts/robust-range-only-beacon-localization-talk</guid>
+                <pubDate>2015-09-06T00:00:00+08:00</pubDate>
         </item>
-{% endfor %}
+
 
 </channel>
 </rss>
