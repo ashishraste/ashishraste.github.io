@@ -5,8 +5,8 @@
         <description> - </description>
         <link></link>
         <link></link>
-        <lastBuildDate>2015-09-27T20:56:26+08:00</lastBuildDate>
-        <pubDate>2015-09-27T20:56:26+08:00</pubDate>
+        <lastBuildDate>2015-09-27T21:07:33+08:00</lastBuildDate>
+        <pubDate>2015-09-27T21:07:33+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -34,7 +34,7 @@ are later used to navigate around the beacon-field taking a simple EKF SLAM appr
 in presence of noise and other uncertainties.&lt;/p&gt;
 
 &lt;p&gt;Will jot down some feedback here that I gathered from my friends and myself after presenting the paper.
-Feel free to comment if you&amp;#39;ve any suggestion to write here. I&amp;#39;ll be happy to know about it.&lt;/p&gt;
+Feel free to comment if you&amp;#39;ve any suggestion to give. I&amp;#39;ll be happy to know about it.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;At least three days must be kept aside for preparing the slides and they must be 

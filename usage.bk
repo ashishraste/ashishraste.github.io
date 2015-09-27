@@ -4,3 +4,8 @@ Adding a new page on the blog
 2. Add "new_page" href in _layouts/default.html as that is acting the default 
 index page, as per the /index.html settings, being served in the site.
 3. Write content in "/new_page.md" file that will be populated in html in the content directory by jekyll.
+
+For publishing the site pages on Github
+---
+1. Build the site at the parent directory level which is nothing but the source branch.
+2. Go to the _site/ folder which has the built content and where the master branch points to, commit the changes and push them to Github.
