@@ -5,8 +5,8 @@
         <description> - </description>
         <link></link>
         <link></link>
-        <lastBuildDate>2015-12-17T23:37:19+08:00</lastBuildDate>
-        <pubDate>2015-12-17T23:37:19+08:00</pubDate>
+        <lastBuildDate>2015-12-18T18:08:54+08:00</lastBuildDate>
+        <pubDate>2015-12-18T18:08:54+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -26,25 +26,24 @@ this paper&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Things that I liked about this paper are:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;The approach taken by the authors to eliminate noisy range measurements and how they reduced it to 
+&lt;li&gt;The approach followed by the authors to eliminate noisy range measurements and how they reduced it to 
 an eigenvector problem.&lt;/li&gt;
-&lt;li&gt;A nice linear flow in explaining how the beacons are localized, and how their range measurements
-are later used to navigate around the beacon-field taking a simple EKF SLAM approach.&lt;/li&gt;
+&lt;li&gt;A nice explanation on how the beacons are localized and how their range measurements
+are later used to navigate around the beacon-field, taking a simple EKF SLAM approach.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;The work discussed in this paper will be great to experiment upon to see how well it performs
 in presence of noise and other uncertainties.&lt;/p&gt;
 
-&lt;p&gt;Will jot down some feedback here that I gathered from my friends and myself after presenting the paper.
-Feel free to comment if you&amp;#39;ve any suggestion to give. I&amp;#39;ll be happy to know about it.&lt;/p&gt;
+&lt;p&gt;Jotting down some feedback here that I gathered from my friends and which I thought I could 
+improve upon after presenting the paper. Feel free to comment if you&amp;#39;ve any suggestions.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;At least three days must be kept aside for preparing the slides and they must be 
-rehearsed at least three times.&lt;/li&gt;
-&lt;li&gt;For any talk involving robots it shall be taken care, wherever possible, to explain the concepts
-and implementations through appropriate simulations and/or real-robot demos.&lt;/li&gt;
-&lt;li&gt;It is better to add some relevant humor before or after discussing technical jargons which usually helps the audience to grasp them quickly. &lt;/li&gt;
-&lt;li&gt;Finally, one shall never present anything with an empty stomach growling for food.&lt;/li&gt;
+&lt;li&gt;At least three days must be kept aside for preparing the presentation slides and they must be 
+rehearsed a couple of times.&lt;/li&gt;
+&lt;li&gt;For any talk involving robots it is important to explain the concepts and implementations
+with appropriate simulations, videos and/or real-robot demos.&lt;/li&gt;
+&lt;li&gt;Finally, one shall never present anything with an empty stomach growling for food :)&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;hr&gt;
