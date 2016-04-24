@@ -12,5 +12,6 @@
 /sitemap.txt
 /style.css
 /tags.html
+/wedding.html
 
 /posts/robl-talk
