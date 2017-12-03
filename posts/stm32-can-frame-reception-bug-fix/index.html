@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fixing STM32 CAN reception – Ashish Raste – Aspiring Sea-to-Space Roboticist</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Users of STM32
+boards having Controller Area Network
+(CAN) bus reception capability may have faced an issue in receiving CAN frames when
+CAN FIFO overrun state is not handled properly. Let&#39;s see how we can fix it.
+" />
+    <meta property="og:description" content="Users of STM32
+boards having Controller Area Network
+(CAN) bus reception capability may have faced an issue in receiving CAN frames when
+CAN FIFO overrun state is not handled properly. Let&#39;s see how we can fix it.
+" />
+    
+    <meta name="author" content="Ashish Raste" />
+
+    
+    <meta property="og:title" content="Fixing STM32 CAN reception" />
+    <meta property="twitter:title" content="Fixing STM32 CAN reception" />
+    
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Ashish Raste - Aspiring Sea-to-Space Roboticist" href="/feed.xml" />
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://avatars.githubusercontent.com/u/832003?v=3" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">Ashish Raste</a></h1>
+            <p class="site-description">Aspiring Sea-to-Space Roboticist</p>
+          </div>
+
+          <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/about">About Me</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h3>Fixing STM32 CAN reception</h3>
+
+  <div class="entry">
+    <span style="font-family:$helveticaNeue; font-size:11pt;"> 
+    <p>Users of <a href="http://www.st.com/en/microcontrollers/stm32-32-bit-arm-cortex-mcus.html">STM32</a>
+boards having <a href="https://en.wikipedia.org/wiki/CAN_bus">Controller Area Network</a>
+(CAN) bus reception capability may have faced an issue in receiving CAN frames when
+CAN FIFO overrun state is not handled properly. Let&#39;s see how we can fix it.</p>
+
+<!--more-->
+
+<p><img src="/assets/images/stm32f7x.jpg" alt="STM32 board">
+[Image courtesy : DigiKey and ST Microelectronics]</p>
+
+<p>This post assumes that the CAN bit-timing and baud-rate are configured properly
+as described in this <a href="https://gist.github.com/Arman92/154e2540847b32c44c29">post</a>.
+Also an assumption has been made that the initial set of source files for STM32 board&#39;s
+firmware has been created by <a href="http://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX utility</a>.</p>
+
+<p>In this example, we&#39;re going to use STM32 F7xxx board. Kindly refer to appropriate
+headers and source files related to the CAN peripheral for your board.
+Under the directory Drivers/STM32F7xx_HAL_Driver/Src/, one should be able to
+find <code>stm32f7xx_hal_can.c</code> source file, where the majority of logic for
+CAN frames transmission and reception happens. There are two places of interest to tweak
+within this file for us to be able to receive CAN frames.</p>
+
+<ol>
+<li><p>HAL_CAN_IRQHandler() function : This routine is called when a CAN frame Rx/Tx related
+interrupt is set. In this function, we have to clear the CAN FIFO overrun error flag
+(FOV), but not set the <code>errorcode</code> value if FIFO overrun happens. The following
+line must be <em>commented out</em> for the CAN FIFO in which the frames are configured for
+reception. Comment out the statement below where CAN frames are being received in FIFO0.</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">errorcode</span> <span class="o">|=</span> <span class="n">HAL_CAN_ERROR_FOV0</span><span class="p">;</span>
+</code></pre></div></li>
+<li><p>HAL_CAN_Receive_IT() function : This routine is called when CAN Rx interrupt flags
+have been set and when it&#39;s good to receive those frames. One important thing to
+note here is that the CAN peripheral on which the frames are received is locked
+but not unlocked before the routine exits. We need to add that unlock-call, a macro
+definition in disguise, just before the function returns <code>HAL_OK</code>.</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">__HAL_UNLOCK</span><span class="p">(</span><span class="n">hcan</span><span class="p">);</span>
+</code></pre></div></li>
+</ol>
+
+<p>Everything is good now for CAN reception. Optionally, you may choose to implement
+the weak-handler <code>HAL_CAN_ErrorCallback()</code> to keep track of CAN errors. Remember
+to call <code>HAL_CAN_Receive_IT()</code> inside <code>HAL_CAN_ErrorCallback()</code> to set the Rx interrupt
+flags to their previous (not-busy) state once the frame has been received.</p>
+
+<hr>
+
+    </span>
+  </div>
+
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'ashishraste';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:rasteashish@gmail.com"><i class="svg-icon email"></i></a>
+
+
+<a href="https://github.com/ashishraste"><i class="svg-icon github"></i></a>
+
+
+
+
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-45831608-2', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/posts/stm32-can-frame-reception-bug-fix',
+		  'title': 'Fixing STM32 CAN reception'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+</html>
+

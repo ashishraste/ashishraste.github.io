@@ -4,13 +4,66 @@
  <title></title>
  <link href="/" rel="self"/>
  <link href=""/>
- <updated>2017-04-22T18:06:44+08:00</updated>
+ <updated>2017-12-03T20:58:38+08:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Fixing STM32 CAN reception</title>
+   <link href="/posts/stm32-can-frame-reception-bug-fix"/>
+   <updated>2017-12-03T00:00:00+08:00</updated>
+   <id>/posts/fixing-STM32-CAN-reception</id>
+   <content type="html">&lt;p&gt;Users of &lt;a href=&quot;http://www.st.com/en/microcontrollers/stm32-32-bit-arm-cortex-mcus.html&quot;&gt;STM32&lt;/a&gt;
+boards having &lt;a href=&quot;https://en.wikipedia.org/wiki/CAN_bus&quot;&gt;Controller Area Network&lt;/a&gt;
+(CAN) bus reception capability may have faced an issue in receiving CAN frames when
+CAN FIFO overrun state is not handled properly. Let&amp;#39;s see how we can fix it.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/stm32f7x.jpg&quot; alt=&quot;STM32 board&quot;&gt;
+[Image courtesy : DigiKey and ST Microelectronics]&lt;/p&gt;
+
+&lt;p&gt;This post assumes that the CAN bit-timing and baud-rate are configured properly
+as described in this &lt;a href=&quot;https://gist.github.com/Arman92/154e2540847b32c44c29&quot;&gt;post&lt;/a&gt;.
+Also an assumption has been made that the initial set of source files for STM32 board&amp;#39;s
+firmware has been created by &lt;a href=&quot;http://www.st.com/en/development-tools/stm32cubemx.html&quot;&gt;STM32CubeMX utility&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this example, we&amp;#39;re going to use STM32 F7xxx board. Kindly refer to appropriate
+headers and source files related to the CAN peripheral for your board.
+Under the directory Drivers/STM32F7xx_HAL_Driver/Src/, one should be able to
+find &lt;code&gt;stm32f7xx_hal_can.c&lt;/code&gt; source file, where the majority of logic for
+CAN frames transmission and reception happens. There are two places of interest to tweak
+within this file for us to be able to receive CAN frames.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;HAL_CAN_IRQHandler() function : This routine is called when a CAN frame Rx/Tx related
+interrupt is set. In this function, we have to clear the CAN FIFO overrun error flag
+(FOV), but not set the &lt;code&gt;errorcode&lt;/code&gt; value if FIFO overrun happens. The following
+line must be &lt;em&gt;commented out&lt;/em&gt; for the CAN FIFO in which the frames are configured for
+reception. Comment out the statement below where CAN frames are being received in FIFO0.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;n&quot;&gt;errorcode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HAL_CAN_ERROR_FOV0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HAL_CAN_Receive_IT() function : This routine is called when CAN Rx interrupt flags
+have been set and when it&amp;#39;s good to receive those frames. One important thing to
+note here is that the CAN peripheral on which the frames are received is locked
+but not unlocked before the routine exits. We need to add that unlock-call, a macro
+definition in disguise, just before the function returns &lt;code&gt;HAL_OK&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;n&quot;&gt;__HAL_UNLOCK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hcan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Everything is good now for CAN reception. Optionally, you may choose to implement
+the weak-handler &lt;code&gt;HAL_CAN_ErrorCallback()&lt;/code&gt; to keep track of CAN errors. Remember
+to call &lt;code&gt;HAL_CAN_Receive_IT()&lt;/code&gt; inside &lt;code&gt;HAL_CAN_ErrorCallback()&lt;/code&gt; to set the Rx interrupt
+flags to their previous (not-busy) state once the frame has been received.&lt;/p&gt;
+
+&lt;hr&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Robust Range Only Beacon Localization Talk</title>

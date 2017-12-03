@@ -13,4 +13,5 @@
 /style.css
 /tags.html
 
+/posts/stm32-can-frame-reception-bug-fix
 /posts/robl-talk
