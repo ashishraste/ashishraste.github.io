@@ -77,30 +77,45 @@ firmware has been created by <a href="http://www.st.com/en/development-tools/stm
 headers and source files related to the CAN peripheral for your board.
 Under the directory Drivers/STM32F7xx_HAL_Driver/Src/, one should be able to
 find <code>stm32f7xx_hal_can.c</code> source file, where the majority of logic for
-CAN frames transmission and reception happens. There are two places of interest to tweak
-within this file for us to be able to receive CAN frames.</p>
+CAN frames transmission and reception happens. Consider the following scenarios which happen in this file:</p>
 
 <ol>
 <li><p>HAL_CAN_IRQHandler() function : This routine is called when a CAN frame Rx/Tx related
-interrupt is set. In this function, we have to clear the CAN FIFO overrun error flag
-(FOV), but not set the <code>errorcode</code> value if FIFO overrun happens. The following
-line must be <em>commented out</em> for the CAN FIFO in which the frames are configured for
-reception. Comment out the statement below where CAN frames are being received in FIFO0.</p>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">errorcode</span> <span class="o">|=</span> <span class="n">HAL_CAN_ERROR_FOV0</span><span class="p">;</span>
+interrupt is set. In this function, we see that the CAN FIFO overrun error flag
+is set (FOV) which happens when the number of CAN frames received exceeds the FIFO
+capacity (defaults to three frames). When such errors happen we need to enable CAN
+receive (Rx) interrupt flag, otherwise the reception stops once the error-flag is set.
+Best way would be to make use of the <code>HAL_CAN_ErrorCallback()</code> weak-handler function
+where we can clear the error-flag and enable the CAN Rx interrupt.</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// Statement where the error-flag is appended in CAN IRQHandler.</span>
+<span class="n">errorcode</span> <span class="o">|=</span> <span class="n">HAL_CAN_ERROR_FOV0</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/**</span>
+<span class="cm"> * Callback function for CAN errors.</span>
+<span class="cm"> * @param canHandle  Pointer to a CAN_HandleTypeDef structure that contains</span>
+<span class="cm"> *        the configuration information for a given CAN peripheral.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">HAL_CAN_ErrorCallback</span><span class="p">(</span><span class="n">CAN_HandleTypeDef</span><span class="o">*</span> <span class="n">canHandle</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// For CAN Rx frames received in FIFO number 0.</span>
+  <span class="n">__HAL_CAN_CLEAR_FLAG</span><span class="p">(</span><span class="n">canHandle</span><span class="p">,</span> <span class="n">CAN_FLAG_FOV0</span><span class="p">);</span>
+  <span class="n">__HAL_CAN_Receive_IT</span><span class="p">(</span><span class="n">canHandle</span><span class="p">,</span> <span class="n">CAN_FIFO0</span><span class="p">);</span>
+
+  <span class="c1">// For CAN Rx frames received in FIFO number 1.</span>
+  <span class="n">__HAL_CAN_CLEAR_FLAG</span><span class="p">(</span><span class="n">canHandle</span><span class="p">,</span> <span class="n">CAN_FLAG_FOV1</span><span class="p">);</span>
+  <span class="n">__HAL_CAN_Receive_IT</span><span class="p">(</span><span class="n">canHandle</span><span class="p">,</span> <span class="n">CAN_FIFO1</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></li>
 <li><p>HAL_CAN_Receive_IT() function : This routine is called when CAN Rx interrupt flags
 have been set and when it&#39;s good to receive those frames. One important thing to
 note here is that the CAN peripheral on which the frames are received is locked
-but not unlocked before the routine exits. We need to add that unlock-call, a macro
-definition in disguise, just before the function returns <code>HAL_OK</code>.</p>
+but not unlocked before the routine exits. This has been fixed in the recent HAL
+release by ST Microelectronics. We need to add an unlock-call, a macro definition
+in disguise, just before the function returns <code>HAL_OK</code>.</p>
 <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">__HAL_UNLOCK</span><span class="p">(</span><span class="n">hcan</span><span class="p">);</span>
 </code></pre></div></li>
 </ol>
 
-<p>Everything is good now for CAN reception. Optionally, you may choose to implement
-the weak-handler <code>HAL_CAN_ErrorCallback()</code> to keep track of CAN errors. Remember
-to call <code>HAL_CAN_Receive_IT()</code> inside <code>HAL_CAN_ErrorCallback()</code> to set the Rx interrupt
-flags to their previous (not-busy) state once the frame has been received.</p>
+<p>Everything is good now for CAN reception. Good luck!</p>
 
 <hr>
 
