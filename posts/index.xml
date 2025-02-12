@@ -19,8 +19,7 @@
       <pubDate>Wed, 12 Feb 2025 13:53:52 +0800</pubDate>
       <guid>https://ashishraste.github.io/posts/2025-02-12-troubleshooting-cmake-errors/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Working with CMake can be frustrating for engineers new to C++, especially those in robotics using &lt;a href=&#34;https://docs.ros.org/en/jazzy/index.html&#34;&gt;ROS&lt;/a&gt; middleware, the most popular framework used by robotics engineers in the field. A common challenge arises when integrating third-party CMake projects, only to encounter cryptic errors that take hours to resolve. This is partly due to CMake’s official documentation, which, while detailed, often lacks clear, practical examples.&lt;/p&gt;
-&lt;p&gt;I’ve been both a victim and a culprit of this problem! In this post, I’ll walk through a structured approach to troubleshooting CMake errors by making the best use of its modern features.&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;https://cmake.org/&#34;&gt;CMake&lt;/a&gt; is the most widely used build system tool in the C++ programming landscape. Troubleshooting its build errors can be frustrating for engineers new to the ecosystem, especially those in robotics using &lt;a href=&#34;https://docs.ros.org/en/jazzy/index.html&#34;&gt;ROS&lt;/a&gt; middleware, the most popular framework used by robotics engineers in the field. A common challenge arises when integrating third-party CMake projects, only to encounter cryptic errors that take hours to resolve. This is partly due to CMake’s official documentation, which, while detailed, often lacks clear, practical examples.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
