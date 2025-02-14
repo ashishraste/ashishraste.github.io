@@ -11,8 +11,16 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Feb 2025 13:53:52 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2025 13:35:36 +0800</lastBuildDate>
     <atom:link href="https://ashishraste.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Navigating Life Post Redundancy</title>
+      <link>https://ashishraste.github.io/posts/2025-02-14-navigating-life-post-redundancy/</link>
+      <pubDate>Fri, 14 Feb 2025 13:35:36 +0800</pubDate>
+      <guid>https://ashishraste.github.io/posts/2025-02-14-navigating-life-post-redundancy/</guid>
+      <description>&lt;p&gt;&amp;ldquo;I might have to become a trainee barista at the local coffee shop to help pay the bills,&amp;rdquo; I told my wife lightheartedly one day, as the possibility of our startup going bust in 2024 arose.&lt;/p&gt;
+&lt;p&gt;Fast forward six months, and I was made redundant. In this post, I&amp;rsquo;d like to share my perspective and experience navigating redundancy. I felt compelled to document my journey in the hope that it might help others facing the uncertainty of a layoff, so here it goes.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Troubleshooting CMake Errors</title>
       <link>https://ashishraste.github.io/posts/2025-02-12-troubleshooting-cmake-errors/</link>
@@ -20,6 +28,13 @@
       <guid>https://ashishraste.github.io/posts/2025-02-12-troubleshooting-cmake-errors/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://cmake.org/&#34;&gt;CMake&lt;/a&gt; is the most widely used build system tool in the C++ programming landscape. Troubleshooting its build errors can be frustrating for engineers new to the ecosystem, especially those in robotics using &lt;a href=&#34;https://docs.ros.org/en/jazzy/index.html&#34;&gt;ROS&lt;/a&gt; middleware, the most popular framework used by robotics engineers in the field. A common challenge arises when integrating third-party CMake projects, only to encounter cryptic errors that take hours to resolve. This is partly due to CMake’s official documentation, which, while detailed, often lacks clear, practical examples.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://ashishraste.github.io/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://ashishraste.github.io/projects/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>
